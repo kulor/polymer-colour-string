@@ -1,0 +1,70 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="stylesheet" href="animate.css">
+<script src="bower_components/randomcolor/randomColor.js"></script>
+<script src="random-int.js"></script>
+
+<dom-module id="kulor-colour-string">
+  <template>
+
+    <style>
+      :host {
+        display: inline-block;
+      }
+
+      span {
+        display: inline-block;
+        color: #999;
+      }
+    </style>
+
+  </template>
+
+  <script>
+  Polymer({
+    is: 'kulor-colour-string',
+
+    // Found it pretty hard to get a good distribution of colours
+    // using Math.rand() so used a function to use crypto.getRandomValues
+    // Opting for explicit R,G,B instances vs loop as it's more readable
+    getRandomAttractiveRGBColour: function(minSeed, maxSeed) {
+      var r = randInt(minSeed, maxSeed);
+      var g = randInt(minSeed, maxSeed);
+      var b = randInt(minSeed, maxSeed);
+      return [r, g, b].map(function(v){
+        return Math.round(v);
+      }).join(',');
+    },
+
+    attached: function() {
+      Polymer.dom(this).childNodes.forEach(function colourString(node, i){
+        var textContent = node.textContent.trim();
+        var textChunks;
+        var blockContainer = document.createElement('div');
+
+        // Ignore processing empty text nodes
+        if (textContent.search(/^\s*$/) >= 0) {
+          return;
+        }
+
+        // Turn a sentence into a series of spans based on space seperation
+        textChunks = textContent.split(' ');
+        textChunkEls = textChunks.map(function(chunk){
+          var chunkEl = document.createElement('span');
+          chunkEl.className = "flipInX animated hidden";
+          chunkEl.style = "color: rgb(" + this.getRandomAttractiveRGBColour(100, 180) + ")";
+
+          // Re-instate the whitespace we removed in the `split`
+          chunkEl.innerHTML = chunk + "&nbsp;";
+          return chunkEl;
+        }.bind(this));
+
+        textChunkEls.forEach(function(chunkEl){
+          Polymer.dom(blockContainer).appendChild(chunkEl);
+        }.bind(this));
+
+        Polymer.dom(this.root).appendChild(blockContainer);
+      }.bind(this));
+    }
+  });
+  </script>
+</dom-module>

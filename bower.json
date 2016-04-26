@@ -1,0 +1,16 @@
+{
+  "name": "kulor-colour-string",
+  "version": "0.0.0",
+  "homepage": "https://github.com/kulor/polymer-colour-string",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0"
+  }
+}
