@@ -4,5 +4,5 @@ Breaks a sentence up into words and rainbowises (colours each word with a random
 
 Example usage:
 ```
-</kulor-colour-string>Veritatis eum voluptatem ut ipsam est voluptates et quia.</kulor-colour-string>
+<kulor-colour-string>Veritatis eum voluptatem ut ipsam est voluptates et quia.</kulor-colour-string>
 ```
