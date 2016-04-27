@@ -1,5 +1,4 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="stylesheet" href="animate.css">
 <script src="bower_components/randomcolor/randomColor.js"></script>
 <script src="random-int.js"></script>
 
@@ -50,7 +49,6 @@
         textChunks = textContent.split(' ');
         textChunkEls = textChunks.map(function(chunk){
           var chunkEl = document.createElement('span');
-          chunkEl.className = "flipInX animated hidden";
           chunkEl.style = "color: rgb(" + this.getRandomAttractiveRGBColour(100, 180) + ")";
 
           // Re-instate the whitespace we removed in the `split`
